@@ -1,0 +1,10 @@
+.intro-container {
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .intro-container img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
