@@ -18,7 +18,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/introduction" element={<Introduction/>}/>
         <Route path="/profile" element={<UserProfile />} />
-        <Route path="/analysis" element={<PostureAnalysis />} />
+        <Route path="/posture-analysis" element={<PostureAnalysis />} />
         <Route path="/recommendations" element={<Recommendations />} />
         <Route path="/exit" element={<ExitPage />} />
       </Routes>

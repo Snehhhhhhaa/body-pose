@@ -18,7 +18,6 @@ const Dashboard = () => {
         <ul>
           <li><Link to="/profile" onClick={() => setMenuOpen(false)}> User Profile</Link></li>
           <li><Link to="/posture-analysis" onClick={() => setMenuOpen(false)}> Posture Analysis</Link></li>
-          <li><Link to="/reports" onClick={() => setMenuOpen(false)}> Reports</Link></li>
           <li><Link to="/recommendations" onClick={() => setMenuOpen(false)}> Personalized Recommendations</Link></li>
           <li><Link to="/exit" onClick={() => setMenuOpen(false)}> Exit</Link></li>
         </ul>

@@ -3,66 +3,56 @@ import "./UserProfile.css";
 
 const UserProfile = () => {
   const [user, setUser] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-    age: 25,
-    gender: "Male",
-    profilePic: "",
+    name: "",
+    age: "",
+    height: "",
+    weight: "",
+    gender: "",
+    healthIssues: "",
+    profilePicture: "/profile.jpg", // Default profile image from public folder
   });
 
-  const [isEditing, setIsEditing] = useState(false);
-
+  // Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUser({ ...user, profilePic: reader.result });
-      };
-      reader.readAsDataURL(file);
+      const imageUrl = URL.createObjectURL(file);
+      setUser({ ...user, profilePicture: imageUrl });
     }
   };
 
-  const toggleEdit = () => {
-    setIsEditing(!isEditing);
+  // Handle form submission
+  const handleSubmit = () => {
+    console.log("User Data Submitted:", user);
   };
 
   return (
-    <div className="profile-container">
-      <h2>User Profile</h2>
-      <div className="profile-card">
-        <div className="profile-pic">
-          <img src={user.profilePic || "https://via.placeholder.com/150"} alt="Profile" />
-          {isEditing && <input type="file" accept="image/*" onChange={handleImageUpload} />}
-        </div>
+    <div className="profile-page">
+      <div className="profile-banner">
+        <div className="profile-content">
+          {/* Profile Image */}
+          <div className="profile-image">
+            <img src={user.profilePicture} alt="Profile" />
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+          </div>
 
-        <div className="profile-info">
-          <label>Name:</label>
-          {isEditing ? <input type="text" name="name" value={user.name} onChange={handleChange} /> : <p>{user.name}</p>}
+          {/* Editable User Info */}
+          <div className="profile-info">
+            <input type="text" name="name" value={user.name} onChange={handleChange} placeholder="Enter your name" />
+            <input type="number" name="age" value={user.age} onChange={handleChange} placeholder="Age" />
+            <input type="text" name="height" value={user.height} onChange={handleChange} placeholder="Height" />
+            <input type="text" name="weight" value={user.weight} onChange={handleChange} placeholder="Weight" />
+            <input type="text" name="gender" value={user.gender} onChange={handleChange} placeholder="Gender" />
+            <input type="text" name="healthIssues" value={user.healthIssues} onChange={handleChange} placeholder="Health Issues" />
 
-          <label>Email:</label>
-          <p>{user.email}</p>
-
-          <label>Age:</label>
-          {isEditing ? <input type="number" name="age" value={user.age} onChange={handleChange} /> : <p>{user.age}</p>}
-
-          <label>Gender:</label>
-          {isEditing ? (
-            <select name="gender" value={user.gender} onChange={handleChange}>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          ) : (
-            <p>{user.gender}</p>
-          )}
-
-          <button onClick={toggleEdit}>{isEditing ? "Save" : "Edit Profile"}</button>
+            {/* Submit Button */}
+            <button className="submit-button" onClick={handleSubmit}>Submit</button>
+          </div>
         </div>
       </div>
     </div>
